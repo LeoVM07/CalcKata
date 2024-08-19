@@ -40,9 +40,9 @@ func IfArabic(n string) int {
 }
 func ArabicCalc(na1, na2 int, oprt string) {
 	if na1 > 10 {
-		println("На входе больше 10!")
+		panic("На входе больше 10!")
 	} else if na2 > 10 {
-		println("На входе больше 10!")
+		panic("На входе больше 10!")
 	} else {
 		switch oprt {
 		case "+":
@@ -54,7 +54,7 @@ func ArabicCalc(na1, na2 int, oprt string) {
 		case "/":
 			fmt.Println(na1 / na2)
 		default:
-			fmt.Println("Do it again!")
+			panic("Некорректный оператор!")
 		}
 	}
 }
@@ -71,7 +71,7 @@ func RomanCalc(rn1, rn2, oprt string) {
 		case "-":
 			sum := RomanConversion[rn1] - RomanConversion[rn2]
 			if sum <= 0 {
-				fmt.Println("Результат меньше или равен нулю!")
+				panic("Результат меньше или равен нулю!")
 			} else {
 				println(intToRoman(sum))
 			}
@@ -80,12 +80,15 @@ func RomanCalc(rn1, rn2, oprt string) {
 			println(intToRoman(sum))
 		case "/":
 			sum := RomanConversion[rn1] / RomanConversion[rn2]
+			if sum <= 0 {
+				panic("Результат должен быть целым числом!")
+			}
 			println(intToRoman(sum))
 		default:
-			fmt.Println("Некорректное выражение!")
+			panic("Некорректный оператор")
 		}
 	} else {
-		fmt.Println("Некорректное выражение!")
+		panic("Некорректное выражение!")
 	}
 }
 
@@ -107,7 +110,7 @@ func main() {
 				RomanCalc(n1, n2, oprt)
 			}
 		} else {
-			fmt.Println("Неверное количество переменных!")
+			panic("Неверное количество переменных!")
 		}
 	}
 
